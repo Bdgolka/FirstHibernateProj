@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)	// adding auto_increment property
 	private int userId;
 	private String userName;
-	@ElementCollection
+	@ElementCollection (fetch =FetchType.EAGER )
 	@JoinTable (name = "USER_ADDRESS",
 	joinColumns = @JoinColumn(name="USER_ID"))
 	private Collection<Address> listofAddresses = new ArrayList<Address>();
