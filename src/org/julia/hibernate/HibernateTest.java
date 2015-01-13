@@ -15,18 +15,18 @@ public class HibernateTest {
 
 		UserDetails user = new UserDetails();
 		user.setUserName("Julia");
-		
+
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("Car");
-	
+
 		Vehicle vehicle2 = new Vehicle();
 		vehicle2.setVehicleName("Jeep");
-		
+
 		user.getVehicle().add(vehicle);
 		user.getVehicle().add(vehicle2);
-		
-		vehicle.setUser(user);
-		vehicle2.setUser(user);;
+
+		vehicle.getUserList().add(user);
+		vehicle2.getUserList().add(user);
 
 		SessionFactory sessionFactory = new Configuration().configure()
 				.buildSessionFactory();
