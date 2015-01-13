@@ -12,7 +12,7 @@
    </property>
 
    <!-- Assume test is the database name -->
-   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernatedb</property>
+   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernatedb1</property>
    <property name="hibernate.connection.username">root</property>
    <property name="hibernate.connection.password">Bdgolk@82</property>
    
