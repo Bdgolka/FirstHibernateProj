@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,18 +35,23 @@ import org.hibernate.annotations.Type;
 @Table(name = "USER_DETAILS")
 public class UserDetails {
 
-	@Id	// @id tolds that field will be a primary key
-	@GeneratedValue(strategy = GenerationType.AUTO)	// adding auto_increment property
+	@Id
+	// @id tolds that field will be a primary key
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	// adding auto_increment property
 	private int userId;
 	private String userName;
-	@ElementCollection (fetch =FetchType.EAGER )
-	@JoinTable (name = "USER_ADDRESS",
-	joinColumns = @JoinColumn(name="USER_ID"))
-	private Collection<Address> listofAddresses = new ArrayList<Address>();
-		
+	@OneToOne
+	@JoinColumn(name = "VEHICLE_ID")
+	private Vehicle vehicle;
 
-	public Collection<Address> getListofAddresses() {
-		return listofAddresses;
+	
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public int getUserId() {
@@ -54,10 +60,6 @@ public class UserDetails {
 
 	public String getUserName() {
 		return userName;
-	}
-
-	public void setListofAddresses(Collection<Address> listofAddresses) {
-		this.listofAddresses = listofAddresses;
 	}
 
 	public void setUserId(int userId) {
