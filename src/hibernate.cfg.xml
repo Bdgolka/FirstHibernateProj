@@ -31,6 +31,8 @@
 <!-- NAmes the annotated entity class -->
 <mapping class="org.julia.javabrains.dto.UserDetails"/>
 <mapping class="org.julia.javabrains.dto.Vehicle"/>
+<mapping class="org.julia.javabrains.dto.TwoWheeler"/>
+<mapping class="org.julia.javabrains.dto.FourWheeler"/>
 </session-factory>
 
 </hibernate-configuration>

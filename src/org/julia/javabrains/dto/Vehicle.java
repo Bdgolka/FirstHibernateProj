@@ -19,7 +19,11 @@ public class Vehicle {
 	@GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	
+
+	public int getVehicleId() {
+		return vehicleId;
+	}
+
 	public void setVehicleId(int vehicleId) {
 		this.vehicleId = vehicleId;
 	}
