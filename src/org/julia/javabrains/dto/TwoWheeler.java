@@ -1,10 +1,11 @@
 package org.julia.javabrains.dto;
 
+import javax.annotation.Generated;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GenerationType;
 
 @Entity
-@DiscriminatorValue ("Bike")
 public class TwoWheeler extends Vehicle {
 	
 	private String SteeringHandle;
