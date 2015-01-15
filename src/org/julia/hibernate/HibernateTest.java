@@ -2,7 +2,9 @@ package org.julia.hibernate;
 
 import java.nio.channels.SeekableByteChannel;
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,19 +18,13 @@ public class HibernateTest {
 				.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-
-		UserDetails user = (UserDetails) session.get(UserDetails.class, 1);
-
-		session.getTransaction().commit();
-		session.close();
-
-		user.setUserName("Changed name");
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(user);
+		Query query = session.createQuery("from UserDetails where userId>5");
+		List users = query.list();
 		
 		session.getTransaction().commit();
 		session.close();
+		
+		System.out.println("Size of list result = " + users.size());
 	}
 }
