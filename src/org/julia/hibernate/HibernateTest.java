@@ -24,23 +24,18 @@ public class HibernateTest {
 				.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		
-		UserDetails exampleUser = new UserDetails();
-		//exampleUser.setUserId(5);
-		exampleUser.setUserName("User 1%");
-		
-		Example example = Example.create(exampleUser).enableLike();
 
-		Criteria criteria = session.createCriteria(UserDetails.class)
-				.add(example);
-
-		List<UserDetails> user = (List<UserDetails>) criteria.list();
+		UserDetails user = (UserDetails) session.get(UserDetails.class, 1);
 
 		session.getTransaction().commit();
 		session.close();
 
-		for (UserDetails u : user) {
-			System.out.println(u.getUserName());
-		}
+		Session session2 = sessionFactory.openSession();
+		session2.beginTransaction();
+
+		UserDetails user2 = (UserDetails) session2.get(UserDetails.class, 1);
+
+		session2.getTransaction().commit();
+		session2.close();
 	}
 }
