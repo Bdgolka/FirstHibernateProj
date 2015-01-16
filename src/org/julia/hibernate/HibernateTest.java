@@ -22,8 +22,8 @@ public class HibernateTest {
 		session.beginTransaction();
 
 		Criteria criteria = session.createCriteria(UserDetails.class); // choose the entity
-		criteria.add(Restrictions.eq("userName", "User 8")); // i want that user name was equal to "User 8"
-		
+		criteria.add(Restrictions.or(Restrictions.between("userId", 0, 3), Restrictions.between("userId", 6, 9)));
+
 		List<UserDetails> user = (List<UserDetails>) criteria.list();
 
 		session.getTransaction().commit();
