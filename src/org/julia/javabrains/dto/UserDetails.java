@@ -23,6 +23,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,7 +38,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 @Entity
-@org.hibernate.annotations.Entity(selectBeforeUpdate = true)
+@NamedQuery(name="UserDetails.byId", query = "from UserDetails where userId = ?")//HQL
+@NamedNativeQuery (name = "UserDetails.byName", query="select *from USER_DETAILS where username = ?", resultClass=UserDetails.class)//SQL
+@org.hibernate.annotations.Entity(selectBeforeUpdate = true)//checking is were any changes before updating, if no hcaanges, no updates
 @Table(name = "USER_DETAILS")
 public class UserDetails {
 
