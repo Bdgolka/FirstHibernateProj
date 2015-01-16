@@ -39,7 +39,6 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @NamedQuery(name="UserDetails.byId", query = "from UserDetails where userId = ?")//HQL
-@NamedNativeQuery (name = "UserDetails.byName", query="select *from USER_DETAILS where username = ?", resultClass=UserDetails.class)//SQL
 @org.hibernate.annotations.Entity(selectBeforeUpdate = true)//checking is were any changes before updating, if no hcaanges, no updates
 @Table(name = "USER_DETAILS")
 public class UserDetails {
