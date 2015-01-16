@@ -9,6 +9,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.julia.javabrains.dto.UserDetails;
 
@@ -20,9 +24,15 @@ public class HibernateTest {
 				.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		
+		UserDetails exampleUser = new UserDetails();
+		//exampleUser.setUserId(5);
+		exampleUser.setUserName("User 1%");
+		
+		Example example = Example.create(exampleUser).enableLike();
 
-		Criteria criteria = session.createCriteria(UserDetails.class); // choose the entity
-		criteria.add(Restrictions.or(Restrictions.between("userId", 0, 3), Restrictions.between("userId", 6, 9)));
+		Criteria criteria = session.createCriteria(UserDetails.class)
+				.add(example);
 
 		List<UserDetails> user = (List<UserDetails>) criteria.list();
 
